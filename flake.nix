@@ -22,6 +22,7 @@
         in
         {
           thop = pkgs.callPackage ./pkgs/thop { };
+          xcv = pkgs.callPackage ./pkgs/xcv { };
         }
       );
     };
