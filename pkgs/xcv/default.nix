@@ -7,28 +7,26 @@
   stdenvNoCC,
   stdenv,
   autoPatchelfHook,
-  installShellFiles,
-  makeWrapper,
 }:
 let
   inherit (stdenvNoCC.hostPlatform) system;
   shaMap = {
-    x86_64-linux = "1vxfncqcaq175i380xjb0mbl39r2lgziby3003cvpdwnjp9fcir2";
-    aarch64-linux = "1gi1l1mq3aq346kh1bk6nfa447axjwsxiap3qx4ffgpxfsin9krh";
-    x86_64-darwin = "0ak1li28jy5c9y1snixzhlfbp0mcq7pdcwvyj2k29mmar33ksmr3";
-    aarch64-darwin = "099ig5w7lsfn07zs8fms7f8lgfb9vw8gmcz8p86hih0rigrqcdph";
+    x86_64-linux = "0y5qy9qlhb576qwygll79hznrddnjfmr0cjp2yh85sjcr4qw4k1i";
+    aarch64-linux = "1w1gmd8cfdx3hgdmsb5i5jkf2cddjqfz52gj70zaxn4dxfn2iwr6";
+    x86_64-darwin = "1wc1dmw0r2dypb27n535dfbskr846zy053n8jgn059blxwxlicxp";
+    aarch64-darwin = "1cmvjhggnsygvpprayny8fz2ycq3jacbb7x0hx82a2x9bb2135r3";
   };
 
   urlMap = {
-    x86_64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.3.0/xcv_0.3.0_linux_amd64.tar.gz";
-    aarch64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.3.0/xcv_0.3.0_linux_arm64.tar.gz";
-    x86_64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.3.0/xcv_0.3.0_darwin_amd64.tar.gz";
-    aarch64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.3.0/xcv_0.3.0_darwin_arm64.tar.gz";
+    x86_64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.3.1/xcv_0.3.1_linux_amd64.tar.gz";
+    aarch64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.3.1/xcv_0.3.1_linux_arm64.tar.gz";
+    x86_64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.3.1/xcv_0.3.1_darwin_amd64.tar.gz";
+    aarch64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.3.1/xcv_0.3.1_darwin_arm64.tar.gz";
   };
 in
 stdenvNoCC.mkDerivation {
   pname = "xcv";
-  version = "0.3.0";
+  version = "0.3.1";
   src = fetchurl {
     url = urlMap.${system};
     sha256 = shaMap.${system};
@@ -36,7 +34,7 @@ stdenvNoCC.mkDerivation {
 
   sourceRoot = ".";
 
-  nativeBuildInputs = [ installShellFiles makeWrapper ] ++ lib.optionals stdenvNoCC.isLinux [ autoPatchelfHook ];
+  nativeBuildInputs = [ installShellFiles ] ++ lib.optionals stdenvNoCC.isLinux [ autoPatchelfHook ];
 
   buildInputs = lib.optionals stdenvNoCC.isLinux [
     stdenv.cc.cc.lib
@@ -45,7 +43,6 @@ stdenvNoCC.mkDerivation {
   installPhase = ''
     mkdir -p $out/bin
     cp -vr ./xcv $out/bin/xcv
-    wrapProgram $out/bin/xcv --prefix PATH : ${lib.makeBinPath ([ installShellFiles ])}
   '';
   postInstall = ''
     installShellCompletion --cmd xcv \
