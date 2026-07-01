@@ -20,8 +20,8 @@ Then reference packages as `inputs.rwilgaard.packages.${system}.<name>`.
 
 | Package | Description |
 |---------|-------------|
-| `thop` | Fuzzy tmux session manager with frecency ranking |
-| `xcv` | CLI tool for inspecting, validating, and comparing X.509 certificate chains |
+| [`thop`](https://github.com/rwilgaard/thop) | Fuzzy tmux session manager with frecency ranking |
+| [`xcv`](https://github.com/rwilgaard/xcv) | CLI tool for inspecting, validating, and comparing X.509 certificate chains |
 
 ## Supported systems
 
