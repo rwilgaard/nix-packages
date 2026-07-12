@@ -11,22 +11,22 @@
 let
   inherit (stdenvNoCC.hostPlatform) system;
   shaMap = {
-    x86_64-linux = "0ydy2vdr1rcdpcjrl5hm91byyx8by7fmsxnhdz0a5banjx46nvwx";
-    aarch64-linux = "1dlmm5wgvlaq4rjq2nx5cvvbkn87is1c49l70nq198pfjl0iki86";
-    x86_64-darwin = "00i1hlsr6g2s797rb2f1p60snah04m4lzisg7bdnw9nqav69di1v";
-    aarch64-darwin = "0656k5w8mp5awsjamhg2k3klpcc3j8s1lzgy9qbjvd44z0xr4zzr";
+    x86_64-linux = "1v9ib30c5lpkg55c4wwss4ypa4iax3q52r7dw6bsaqvw6w6q6wyf";
+    aarch64-linux = "0qsmankjfaqfpzilsa4cwlhb4xn95wclj3v05asklv0wv2mfbnzz";
+    x86_64-darwin = "1yf4i78bg0zkj46zqd8czqmhknqqysl5dljg8hf6c62ym35bppjh";
+    aarch64-darwin = "08yjb0rz0a2pi0wwkmw0ipish0v0ynsyk5q279jgng8ng6ys0fpd";
   };
 
   urlMap = {
-    x86_64-linux = "https://github.com/rwilgaard/thop/releases/download/v0.6.0/thop_0.6.0_linux_amd64.tar.gz";
-    aarch64-linux = "https://github.com/rwilgaard/thop/releases/download/v0.6.0/thop_0.6.0_linux_arm64.tar.gz";
-    x86_64-darwin = "https://github.com/rwilgaard/thop/releases/download/v0.6.0/thop_0.6.0_darwin_amd64.tar.gz";
-    aarch64-darwin = "https://github.com/rwilgaard/thop/releases/download/v0.6.0/thop_0.6.0_darwin_arm64.tar.gz";
+    x86_64-linux = "https://github.com/rwilgaard/thop/releases/download/v0.7.0/thop_0.7.0_linux_amd64.tar.gz";
+    aarch64-linux = "https://github.com/rwilgaard/thop/releases/download/v0.7.0/thop_0.7.0_linux_arm64.tar.gz";
+    x86_64-darwin = "https://github.com/rwilgaard/thop/releases/download/v0.7.0/thop_0.7.0_darwin_amd64.tar.gz";
+    aarch64-darwin = "https://github.com/rwilgaard/thop/releases/download/v0.7.0/thop_0.7.0_darwin_arm64.tar.gz";
   };
 in
 stdenvNoCC.mkDerivation {
   pname = "thop";
-  version = "0.6.0";
+  version = "0.7.0";
   src = fetchurl {
     url = urlMap.${system};
     sha256 = shaMap.${system};
