@@ -11,22 +11,22 @@
 let
   inherit (stdenvNoCC.hostPlatform) system;
   shaMap = {
-    x86_64-linux = "1ak90l7krjpjzkk8b00yjbm5gvj1r3qfr8hkx5jdazkyv7msyyw0";
-    aarch64-linux = "0hf0z1hj96l9cj23hbshanxklafm7j30169f8xq8x428hmkf8f8m";
-    x86_64-darwin = "0lj51mzw9fmki6793m9n6aka2lvnj6xlh6prxhmfl7pn6vvw0gmq";
-    aarch64-darwin = "11clbrvchb88d04av1vvq0vkg0iy4qyqdv6nrwrnihrfzv7bgscr";
+    x86_64-linux = "02hfl60zq22g06qlbwihgl6mdk4rq2a8r1fqlw1b38q1g8lmkvjz";
+    aarch64-linux = "15m9gcq8g00n1vqi364g3kkm1zg7wlbpc7fa4hpz0ch6l6s35wm3";
+    x86_64-darwin = "0ybwhrkzbz5c5b00ilczj3hyaa5xnjhnnix3vsi2si0mqg6w06s9";
+    aarch64-darwin = "0dvci3yq2h4lw1yffa5968nzj4m68d6n02nwj6628n33yabb44qp";
   };
 
   urlMap = {
-    x86_64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.6.0/xcv_0.6.0_linux_amd64.tar.gz";
-    aarch64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.6.0/xcv_0.6.0_linux_arm64.tar.gz";
-    x86_64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.6.0/xcv_0.6.0_darwin_amd64.tar.gz";
-    aarch64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.6.0/xcv_0.6.0_darwin_arm64.tar.gz";
+    x86_64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.7.0/xcv_0.7.0_linux_amd64.tar.gz";
+    aarch64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.7.0/xcv_0.7.0_linux_arm64.tar.gz";
+    x86_64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.7.0/xcv_0.7.0_darwin_amd64.tar.gz";
+    aarch64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.7.0/xcv_0.7.0_darwin_arm64.tar.gz";
   };
 in
 stdenvNoCC.mkDerivation {
   pname = "xcv";
-  version = "0.6.0";
+  version = "0.7.0";
   src = fetchurl {
     url = urlMap.${system};
     sha256 = shaMap.${system};
@@ -42,8 +42,10 @@ stdenvNoCC.mkDerivation {
 
   installPhase = ''
     runHook preInstall
+    runHook preInstall
     mkdir -p $out/bin
     cp -vr ./xcv $out/bin/xcv
+    runHook postInstall
     runHook postInstall
   '';
   postInstall = ''
