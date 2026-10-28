@@ -11,22 +11,22 @@
 let
   inherit (stdenvNoCC.hostPlatform) system;
   shaMap = {
-    x86_64-linux = "1a4wkgdjyc3dcc5f2y7q0l5rr402h5hnwd13j8flwrx5ypm2ipb7";
-    aarch64-linux = "1xk89qvmalki2x75zfbmzgcv1d7m009n7qw7qr728vr8969ik3ig";
-    x86_64-darwin = "0m2x5z5gn0b2x31zg6a78rr1d8yxp4mxn2g2pmyb1bri0pszphj4";
-    aarch64-darwin = "0nw0zxvn1d0w4mv68zr7naciwsljwppyb0rlmhmmwms7kpmcrp8a";
+    x86_64-linux = "083y0is3aiz865hw929b1nnsb0wkg403yyg8qclkc4b9afzw20wd";
+    aarch64-linux = "0f74n955gznlsh74y0m6d4h7qcdmcq0w80ghvb883nras6kxv432";
+    x86_64-darwin = "0ghn1hvm4hq7b495fxc40sijh6zwsdazhmy2qlcgaw8blb9k9sab";
+    aarch64-darwin = "0nliq08xg9lvyh07zp4hvjbk5598b69m12qc6a2r4kiv2sc2icdp";
   };
 
   urlMap = {
-    x86_64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.8.0/xcv_0.8.0_linux_amd64.tar.gz";
-    aarch64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.8.0/xcv_0.8.0_linux_arm64.tar.gz";
-    x86_64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.8.0/xcv_0.8.0_darwin_amd64.tar.gz";
-    aarch64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.8.0/xcv_0.8.0_darwin_arm64.tar.gz";
+    x86_64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.8.1/xcv_0.8.1_linux_amd64.tar.gz";
+    aarch64-linux = "https://github.com/rwilgaard/xcv/releases/download/v0.8.1/xcv_0.8.1_linux_arm64.tar.gz";
+    x86_64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.8.1/xcv_0.8.1_darwin_amd64.tar.gz";
+    aarch64-darwin = "https://github.com/rwilgaard/xcv/releases/download/v0.8.1/xcv_0.8.1_darwin_arm64.tar.gz";
   };
 in
 stdenvNoCC.mkDerivation {
   pname = "xcv";
-  version = "0.8.0";
+  version = "0.8.1";
   src = fetchurl {
     url = urlMap.${system};
     sha256 = shaMap.${system};
